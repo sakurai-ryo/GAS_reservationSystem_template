@@ -1,0 +1,46 @@
+import { Data } from './createData';
+import moment from 'moment';
+//const Moment = { moment: moment };
+
+export function calculatePrice(data: Data): number {
+    let money = 0;
+    const startDate = Moment.moment(data.startDate);
+    const startDateForAdd = Moment.moment(data.startDate);
+    const endDate = startDateForAdd.add(data.useTime, 'hours');
+    const noon = Moment.moment(data.startDate).hours(12).minutes(0).toDate();
+
+    if (data.numOfpeople === 1) {
+        if (endDate.isBefore(noon) || endDate.isSame(noon))
+            money = 1000;
+        else {
+            var afterMorning = endDate.diff(noon, 'hours', true);
+            if (startDate.isBefore(noon)) {
+                var morning = Math.abs(startDate.diff(noon, 'hours', true));
+                var afterMorning = endDate.diff(noon, 'hours', true);
+                money = morning * 500 + afterMorning * 850;
+            }
+            else {
+                var afterNoon = endDate.diff(startDate, 'hours', true);
+                money = afterNoon * 850;
+            }
+        }
+    }
+    else {
+        if (endDate.isBefore(noon) || endDate.isSame(noon))
+            money = 2400;
+        else {
+            var afterMorning = endDate.diff(noon, 'hours', true);
+            if (startDate.isBefore(noon)) {
+                var morning = Math.abs(startDate.diff(noon, 'hours', true));
+                var afterMorning = endDate.diff(noon, 'hours', true);
+                console.log(afterMorning);
+                money = morning * 1200 + afterMorning * 1500;
+            }
+            else {
+                var afterNoon = endDate.diff(startDate, 'hours', true);
+                money = afterNoon * 1500;
+            }
+        }
+    }
+    return Math.floor(money);
+}
