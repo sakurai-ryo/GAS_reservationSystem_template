@@ -13,14 +13,14 @@ export function calculatePrice(data: Data): number {
         if (endDate.isBefore(noon) || endDate.isSame(noon))
             money = 1000;
         else {
-            var afterMorning = endDate.diff(noon, 'hours', true);
+            const afterMorning = endDate.diff(noon, 'hours', true);
             if (startDate.isBefore(noon)) {
-                var morning = Math.abs(startDate.diff(noon, 'hours', true));
-                var afterMorning = endDate.diff(noon, 'hours', true);
+                const morning = Math.abs(startDate.diff(noon, 'hours', true));
+                const afterMorning = endDate.diff(noon, 'hours', true);
                 money = morning * 500 + afterMorning * 850;
             }
             else {
-                var afterNoon = endDate.diff(startDate, 'hours', true);
+                const afterNoon = endDate.diff(startDate, 'hours', true);
                 money = afterNoon * 850;
             }
         }
@@ -31,13 +31,13 @@ export function calculatePrice(data: Data): number {
         else {
             var afterMorning = endDate.diff(noon, 'hours', true);
             if (startDate.isBefore(noon)) {
-                var morning = Math.abs(startDate.diff(noon, 'hours', true));
-                var afterMorning = endDate.diff(noon, 'hours', true);
+                const morning = Math.abs(startDate.diff(noon, 'hours', true));
+                const afterMorning = endDate.diff(noon, 'hours', true);
                 console.log(afterMorning);
                 money = morning * 1200 + afterMorning * 1500;
             }
             else {
-                var afterNoon = endDate.diff(startDate, 'hours', true);
+                const afterNoon = endDate.diff(startDate, 'hours', true);
                 money = afterNoon * 1500;
             }
         }
